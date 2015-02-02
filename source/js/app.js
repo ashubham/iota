@@ -4,11 +4,17 @@
  */
 define([
   'angular',
+  'd3',
   'ui.router',
+  'angular-charts',
+  'elasticsearch',
+  'ng-strap',
+  'ng-strap-tpl',
+  'ng-gridster',
   './config',
-  './modules/docs/index',
-  './modules/home/index',
-  './modules/ui/index'
+  './modules/docs/docs',
+  './modules/home/home',
+  './modules/ui/ui'
 ], function (angular) {
   'use strict';
 
@@ -17,7 +23,11 @@ define([
     'app.docs',
     'app.home',
     'app.ui',
-    'ui.router'
+    'ui.router',
+    'angularCharts',
+    'gridster',
+    'mgcrea.ngStrap',
+    'elasticsearch'
   ]).config(function ($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
   });

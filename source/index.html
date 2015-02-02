@@ -4,39 +4,46 @@
   <meta charset="utf-8">
   <title>ngseed (0.2.1)</title>
   <link rel="stylesheet" href="assets/css/main.css?bust=v0.4.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/angular-motion/dist/angular-motion.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="vendor/angular-gridster/dist/angular-gridster.min.css">
+
+
+
 </head>
-<body>
+<body ng-controller="HomeController">
 
-<!-- Header -->
-<div class="header">
-  <div class="wrap">
-    <div class="grid">
-      <div class="3">
-        <i class="header_logo logo"></i>
-      </div>
-      <div class="9">
-        <menu class="header_menu">
-          <menu-i sref="docs.base">Base</menu-i>
-          <menu-i sref="docs.project">Project</menu-i>
-          <menu-i sref="docs.cosmetic">Cosmetic</menu-i>
-          <menu-i sref="docs.functions">Functions</menu-i>
-          <menu-i sref="docs.mixins">Mixins</menu-i>
-        </menu>
-      </div>
+    <br/>
+    <div class="col-xs-1" style="margin: 0px 15px">
+      <img src="assets/images/base/icon/xi.jpeg" height="34" width="34">
     </div>
-  </div>
-</div>
-<div class="header-push"></div>
+    <div class="col-xs-10">
+      <div class="input-group">
+          <typeahead items="suggestions" prompt="Enter query" model="query" classes="form-control"></typeahead>
+          <span class="input-group-btn">
+            <button ng-click="getResults()" class="btn btn-default" type="button">Go!</button>
+          </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
 
-<!-- Content -->
-<div class="section __head __foot wrap">
-  <div class="grid">
-    <div class="3"></div>
-    <div class="9">
-      <div ui-view></div>
+
+    <hr class="col-xs-12"/>
+    <div class="container-fluid col-xs-12">
+
+        <div gridster="gridsterOpts">
+          <ul>
+              <li gridster-item="chart" ng-repeat="chart in charts">
+                  <div ng-include="chart.type"></div>
+
+              </li>
+          </ul>
+        </div>
     </div>
-  </div>
-</div>
+
+
 
 <!-- Scripts -->
 <script src="vendor/requirejs/require.js"></script>
@@ -53,6 +60,39 @@
     // load app
     require(['./js/main.js']);
   });
+</script>
+
+<!-- Templates -->
+<script type="text/ng-template" id="area">
+    <fs:area
+            duration="750"
+            interpolate="true"
+            interval="hour"
+            stat="getStat"
+            on-click="filterSearchA"
+            bind="data.aggregations.date_histogram"
+            />
+
+</script>
+<script type="text/ng-template" id="histo">
+    <fs:date-histo
+            duration="750"
+            interval="hour"
+            stat="getStat"
+            on-click="filterSearchA"
+            bind="data.aggregations.date_histogram"
+            />
+</script>
+<script type="text/ng-template" id="pie">
+
+</script>
+<script type="text/ng-template" id="donut">
+    <fs:donut
+            outer-radius="200"
+            inner-radius="75"
+            duration="750"
+            on-click="filterSearchA"
+            bind="data.aggregations.touchdowns" />
 </script>
 
 </body>

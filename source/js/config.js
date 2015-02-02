@@ -4,5 +4,6 @@
 define(['angular'], function (angular) {
   'use strict';
   return angular.module('app.constants', [])
-    .constant('CONFIG', {});
+    .constant('CONFIG', {})
+    .constant('esMinVersion','0.90.9');
 });

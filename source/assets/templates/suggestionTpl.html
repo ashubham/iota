@@ -1,0 +1,14 @@
+<input type="text" ng-model="model" placeholder="{{prompt}}" ng-trim="false" ng-keydown="selected=false" class="{{classes}}"/><br/>
+<div ng-hide="!filteredItems.length || selected" class="open" style="left:30px;">
+    <ul tabindex="-1" class="dropdown-menu" role="select" ng-style="style()">
+        <li role="presentation" ng-repeat="item in (filteredItems = (items | filter:filterBy | limitTo:6))"  ng-class="{active: $index == current}">
+            <a role="menuitem" tabindex="-1" ng-click="handleSelection(item)" ng-bind="item"></a>
+        </li>
+    </ul>
+
+
+    <!--<div class="item" ng-repeat="item in items | filter:model  track by $index" ng-click="handleSelection(item[title])" style="cursor:pointer" ng-class="{active:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+        <p class="title">{{item}}</p>
+        <p class="subtitle">{{item}}</p>
+    </div>-->
+</div>

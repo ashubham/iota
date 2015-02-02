@@ -1,13 +1,18 @@
 define([
   'angular',
+   'd3',
+   'angular-charts',
   'ui.router',
-  '../../config'
+  '../../config',
+    'elasticsearch'
 ], function (angular) {
   'use strict';
 
   return angular.module('app.home', [
     'app.constants',
-    'ui.router'
+    'ui.router',
+    'angularCharts',
+    'elasticsearch'
   ]).config(function ($stateProvider) {
     $stateProvider
       .state('home', {
